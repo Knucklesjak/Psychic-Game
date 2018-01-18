@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>I AM A PSYCHIC!</title>
+</head>
+<body>
+	<div class="container">
+      <h1>The Psychic Game!</h1>
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="jumbotron">
+            <h2>Guess What Letter I'm Thinking Of: <span id="user-guess-label"></span></h2>
+            <h3>Wins: <span id="wins-label"></span></h3>
+            <h3>Losses: <span id="losses-label"></span></h3>
+            <h3>Guesses Left: <span id="guessesleft-label"></span></h3>
+            <!-- <h3>Your Guesses So Far: <span id="totalguesses-label"></span></h3> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- We have to put this at the end of our document to ensure the user-text
+         span exists when we try to access it. -->
+    <script type="text/javascript">
+    	var array = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    	var compGuess;
+    	var userGuess;
+    	var wins = 0;
+    	var losses = 0;
+    	var guessesLeft = 0;
+
+      // Let's start by grabbing a reference to the <span> below.
+      // Thinks of the document.getElem ... as the same as a # in CSS for identifying an id
+      var userGuessLabel = document.getElementById("user-guess-label");
+      console.log(userGuessLabel)
+
+      function resetGame(){
+        guessesLeft = 9;
+        compGuess = array[Math.floor(Math.random()*27)];
+
+      }
+      function updateGame() {
+        document.getElementById("wins-label").textContent = wins;
+        document.getElementById("losses-label").textContent = losses;
+        document.getElementById("guessesleft-label").textContent = guessesLeft;
+      }
+      resetGame();
+      // Next, we give JavaScript a function to execute when onkeyup event fires.
+      // How to get it to select just one letter until userGuess is done guessing?
+      document.onkeyup = function(event) {
+				// compGuess = array[Math.floor(Math.random()*27)];
+				console.log(compGuess);
+        userGuessLabel.textContent = event.key;
+        userGuess = event.key;
+        
+        if (userGuess == compGuess) {
+        		wins++;
+        		updateGame();
+            resetGame();
+        	}
+
+// Should the command be to guess again? 
+	        else if (userGuess !== compGuess){
+	        	  guessesLeft--;
+              updateGame();
+            if (guessesLeft === 0){
+              losses++;
+              updateGame();
+              resetGame();
+            }
+	        	
+
+	        }
+
+	       
+      }
+
+    </script>
+</body>
+</html>
