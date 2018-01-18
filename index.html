@@ -4,6 +4,7 @@
 	<title>I AM A PSYCHIC!</title>
 </head>
 <body>
+  <!-- Is this too much HTML? Should this be DRY upped? If so what do you recommend?  -->
 	<div class="container">
       <h1>The Psychic Game!</h1>
       <div class="row">
@@ -20,8 +21,7 @@
       </div>
     </div>
 
-    <!-- We have to put this at the end of our document to ensure the user-text
-         span exists when we try to access it. -->
+
     <script type="text/javascript">
     	var array = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     	var compGuess;
@@ -40,6 +40,7 @@
         compGuess = array[Math.floor(Math.random()*27)];
 
       }
+      // David helped my DRY up my code here. I originally had each getElementbyid below in the "else-if" areas. 
       function updateGame() {
         document.getElementById("wins-label").textContent = wins;
         document.getElementById("losses-label").textContent = losses;
@@ -47,7 +48,7 @@
       }
       resetGame();
       // Next, we give JavaScript a function to execute when onkeyup event fires.
-      // How to get it to select just one letter until userGuess is done guessing?
+      // How to get it to select just one letter until userGuess is done guessing? Note, I realized after writing this that the function of resetGame needed to be moved ABOVE the .onkeyup feature, otherwise the computer would randomly select a new letter after every key stroke by user. 
       document.onkeyup = function(event) {
 				// compGuess = array[Math.floor(Math.random()*27)];
 				console.log(compGuess);
@@ -73,6 +74,7 @@
 
 	        }
 
+// I feel full disclosure is needed when grading here. I had about 90% of the coding done but couldn't get it 100%. David really helped witht he final pushes and I made notations where that was so it is clear what I did and where I got help. 
 	       
       }
 
